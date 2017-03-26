@@ -44,3 +44,25 @@ below for each element.
 ## Other Elements
 
 The following other elements are in the game.
+
+1. Spike-trap (trap)
+2. Flame Thrower (trap)
+3. Slime (monster)
+4. Viking? (monster)
+5. Small Flame (monster)
+6. Big Flame (monster)
+7. Ninja (monster)
+8. Yeti (monster)
+9. Alien? (monster)
+
+| Item | Moves | Special |
+| ---- | ----- | ----- |
+| Spike Trap | Three-turn progression | kills all standing on it when activate |
+| Flame Thrower | Three-turn progression | kills all in path when activated |
+| Slime | One LRUD | Player can only move max one square after killing |
+| Viking | One Diagonal | None |
+| Small Flame | Two LRUD | None |
+| Big Flame | One LRUD or diagonal | Can't be killed |
+| Ninja | 2x1 (Chess Knight) | None |
+| Yeti | TODO | TODO |
+| Alien | TODO | TODO |
