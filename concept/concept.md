@@ -47,22 +47,39 @@ The following other elements are in the game.
 
 1. Spike-trap (trap)
 2. Flame Thrower (trap)
-3. Slime (monster)
-4. Viking? (monster)
-5. Small Flame (monster)
-6. Big Flame (monster)
-7. Ninja (monster)
-8. Yeti (monster)
-9. Alien? (monster)
+3. Floor Squasher (trap)
+4. Slime (monster)
+5. Viking? (monster)
+6. Small Flame (monster)
+7. Big Flame (monster)
+8. Ninja (monster)
+9. Yeti (monster)
+10. Magician (monster)
+11. Transporter (monster)
+12. Death bird (monster)
+13. Dragon (boss)
 
 | Item | Moves | Special |
 | ---- | ----- | ----- |
 | Spike Trap | Three-turn progression | kills all standing on it when activate |
 | Flame Thrower | Three-turn progression | kills all in path when activated |
+| Floor Squasher | Three turn progression | kills all by squashing against ceiling |
 | Slime | One LRUD | Player can only move max one square after killing |
 | Viking | One Diagonal | None |
-| Small Flame | Two LRUD | None |
-| Big Flame | One LRUD or diagonal | Can't be killed |
+| Small Flame | One/Two LRUD | Sprays flame one square LRUD after death |
+| Big Flame | One LRUD | Player can't kill, sprays flame across 9 squares after death |
 | Ninja | 2x1 (Chess Knight) | None |
-| Yeti | TODO | TODO |
-| Alien | TODO | TODO |
+| Yeti | One LRUD | Freezes all monsters for two turns when killed |
+| Magician | One LRUD or diagonal | Casts spell that wraps protective bubble around random monsters |
+| Transporter | One LRUD | If on same row in line of site, swaps location with player with transport ray |
+| Death bird | One LRUD | If on smae row in line of site, kills player with death ray |
+| Dragon | One LRUD | See below |
+
+The monsters appear on later levels - e.g. Death bird never appears on the first level.
+
+The Dragon appears on level 10.
+It starts in the center of the level, and sleeps for 5 turns with a count-down.
+The player must sneek past it to the treasure during these first 5 turns.
+It then wakes up, and starts chasing the player.
+They need to use the walls to escape it.
+Each turn, it shoots flame into the the column in front of it - for three rows (same, one up, one down).
