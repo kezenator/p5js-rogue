@@ -1,11 +1,11 @@
-function Player()
+function Player(gameboard, x, y)
 {
+    Item.call(this, gameboard, x, y);
 }
 
 Player.prototype = Object.create(Item.prototype);
 
 Player.prototype.draw = function(x, y, sizex, sizey)
 {
-    line(x, y, x + sizex, y + sizey);
-    line(x + sizex, y, x, y + sizey);
+    image(assets.player, x, y, sizex, sizey);
 }
