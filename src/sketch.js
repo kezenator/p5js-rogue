@@ -11,8 +11,9 @@ function setup()
     
     assets = new Assets();
     
-    gameboard = new GameBoard(3, 2);
+    gameboard = new GameBoard(5, 3);
     player = new Player(gameboard, 2, 1);
+    monster = new Monster(gameboard, 2, 0);
 }
 
 function draw()
@@ -28,28 +29,30 @@ function keyPressed()
     {
         if (player.x > 0)
         {
-            player.moveTo(player.x - 1, player.y);
+            player.moveToIfEmpty(player.x - 1, player.y);
         }
     }
     else if (keyCode == RIGHT_ARROW)
     {
         if (player.x < (gameboard.columns - 1))
         {
-            player.moveTo(player.x + 1, player.y);
+            player.moveToIfEmpty(player.x + 1, player.y);
         }
     }
     else if (keyCode == UP_ARROW)
     {
         if (player.y > 0)
         {
-            player.moveTo(player.x, player.y - 1);
+            player.moveToIfEmpty(player.x, player.y - 1);
         }
     }
     else if (keyCode == DOWN_ARROW)
     {
         if (player.y < (gameboard.rows - 1))
         {
-            player.moveTo(player.x, player.y + 1);
+            player.moveToIfEmpty(player.x, player.y + 1);
         }
     }
+    
+    monster.move();
 }

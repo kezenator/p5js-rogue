@@ -49,4 +49,9 @@ GameBoard.prototype.draw = function()
 GameBoard.prototype.setItem = function(x, y, item)
 {
     this.squares[x][y] = item;
-}
+};
+
+GameBoard.prototype.isEmpty = function(x, y)
+{
+    return !this.squares[x][y];
+};
