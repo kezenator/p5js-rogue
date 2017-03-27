@@ -1,6 +1,7 @@
 function Monster(gameboard, x, y)
 {
     Item.call(this, gameboard, x, y);
+    this.sprite = new Sprite(assets.monster, 4);
     this.movingDown = true;
 }
 
@@ -8,7 +9,7 @@ Monster.prototype = Object.create(Item.prototype);
 
 Monster.prototype.draw = function(x, y, sizex, sizey)
 {
-    image(assets.monster, x, y, sizex, sizey);
+    this.sprite.draw(x, y, sizex, sizey);
 };
 
 Monster.prototype.move = function()
