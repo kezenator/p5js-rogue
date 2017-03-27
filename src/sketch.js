@@ -1,4 +1,5 @@
-var y = 100;
+var gameboard;
+var player;
 
 function setup()
 {
@@ -6,15 +7,15 @@ function setup()
     stroke(255);
     strokeWeight(5);
     frameRate(30);
+    
+    gameboard = new GameBoard(3, 2);
+    player = new Player();
+    gameboard.setItem(2, 1, player);
 }
 
 function draw()
 {
     background(0);
-    y = y - 1; 
-    if (y < 0)
-    { 
-        y = height; 
-    }
-    line(0, y, width / 2, y + 50);  
+    
+    gameboard.draw();
 }
