@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "module": "System",
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "outFile": "sketch.js"
+    },
+    "files": [
+        "definitions/p5.d.ts",
+        "definitions/p5.global-mode.d.ts",
+        "definitions/p5.keycodes.d.ts",
+        "assets.ts",
+        "sprite.ts",
+        "item.ts",
+        "gameboard.ts",
+        "player.ts",
+        "monster.ts",
+        "sketch.ts"
+    ]
+}

@@ -8,16 +8,16 @@ var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var watch = require('gulp-watch');
 
+var tsProject = ts.createProject('src/tsconfig.json');
+
 gulp.task('reload', function() {
     reload();
 });
  
 gulp.task('scripts', function() {
-    var tsResult = gulp.src('src/*.ts')
+    var tsResult = tsProject.src()
         .pipe(sourcemaps.init())
-        .pipe(ts({
-            declaration: true
-         }));
+        .pipe(tsProject(ts.reporter.fullReporter(true)));
  
     return merge([
         tsResult.js
@@ -46,7 +46,7 @@ gulp.task('clean-build', function(callback) {
 });
 
 gulp.task('watch', ['build'], function () {
-    watch('src/*', batch(function (events, done) {
+    watch('src/**', batch(function (events, done) {
         gulp.start('build', done);
     }));
 });

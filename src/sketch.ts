@@ -1,8 +1,8 @@
-var gameboard;
-var player;
-var assets;
+var gameboard: GameBoard;
+var player: Player;
+var monster: Monster;
 
-function setup()
+function setup(): void
 {
     createCanvas(720, 400);  
     stroke(255);
@@ -16,41 +16,41 @@ function setup()
     monster = new Monster(gameboard, 2, 0);
 }
 
-function draw()
+function draw(): void
 {
     background(0);
     
     gameboard.draw();
 }
 
-function keyPressed()
+function keyPressed(): void
 {
     if (keyCode == LEFT_ARROW)
     {
-        if (player.x > 0)
+        if (player.posX() > 0)
         {
-            player.moveToIfEmpty(player.x - 1, player.y);
+            player.moveToIfEmpty(player.posX() - 1, player.posY());
         }
     }
     else if (keyCode == RIGHT_ARROW)
     {
-        if (player.x < (gameboard.columns - 1))
+        if (player.posX() < (gameboard.columns() - 1))
         {
-            player.moveToIfEmpty(player.x + 1, player.y);
+            player.moveToIfEmpty(player.posX() + 1, player.posY());
         }
     }
     else if (keyCode == UP_ARROW)
     {
-        if (player.y > 0)
+        if (player.posY() > 0)
         {
-            player.moveToIfEmpty(player.x, player.y - 1);
+            player.moveToIfEmpty(player.posX(), player.posY() - 1);
         }
     }
     else if (keyCode == DOWN_ARROW)
     {
-        if (player.y < (gameboard.rows - 1))
+        if (player.posY() < (gameboard.rows() - 1))
         {
-            player.moveToIfEmpty(player.x, player.y + 1);
+            player.moveToIfEmpty(player.posX(), player.posY() + 1);
         }
     }
     
