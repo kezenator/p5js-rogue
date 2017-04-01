@@ -1,0 +1,35 @@
+{
+  "name": "p5js-rogue",
+  "version": "0.0.1",
+  "description": "A rogue-like game written for the web browser using the p5-js library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kezenator/p5js-rogue.git"
+  },
+  "keywords": [
+    "p5-js",
+    "javascript"
+  ],
+  "author": "Kerry Johnson, Jamie Sellin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kezenator/p5js-rogue/issues"
+  },
+  "homepage": "https://github.com/kezenator/p5js-rogue#readme",
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-reload": "0.0.4",
+    "gulp-sourcemaps": "^2.5.0",
+    "gulp-typescript": "^3.1.6",
+    "gulp-watch": "^4.3.11",
+    "merge2": "^1.0.3",
+    "run-sequence": "^1.2.2",
+    "typescript": "^2.2.2"
+  }
+}
