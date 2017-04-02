@@ -1,37 +1,36 @@
 class Monster extends Item
 {
     private sprite: Sprite;
-    private movingDown: boolean;
+    private direction: p5.Vector;
 
-    constructor(gameboard: GameBoard, x: number, y: number)
+    constructor(gameboard: GameBoard, pos: p5.Vector)
     {
-        super(gameboard, x, y);
+        super("monster", gameboard, pos);
         this.sprite = new Sprite(assets.monster, 4);
-        this.movingDown = true;
+        this.direction = new p5.Vector(0, 1);
     }
 
-    draw(x: number, y: number, sizex: number, sizey: number): void
+    draw(pos: p5.Vector, size: p5.Vector): void
     {
-        this.sprite.draw(x, y, sizex, sizey);
+        this.sprite.draw(pos, size);
     };
 
-    move(): void
+    move(action_seq: ActionSequence): void
     {
-        var newy;
-        
-        if (this.movingDown)
+        for (var i = 0; i < 2; ++i)
         {
-            newy = this.posY() + 1;
-            if (newy >= (this.gameboard().rows() - 1))
-                this.movingDown = false;
+            var new_pos = this.pos().add(this.direction);
+
+            if (!this.gameboard().isValidPosition(new_pos)
+                || !this.gameboard().isEmpty(new_pos))
+            {
+                this.direction = this.direction.mult(-1);
+            }
+            else
+            {
+                this.moveToIfEmpty(new_pos, action_seq);
+                break;
+            }
         }
-        else
-        {
-            newy = this.posY() - 1;
-            if (newy <= 0)
-                this.movingDown = true;
-        }
-        
-        this.moveToIfEmpty(this.posX(), newy);
     }
 }

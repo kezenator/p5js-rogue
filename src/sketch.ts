@@ -1,6 +1,7 @@
 var gameboard: GameBoard;
 var player: Player;
 var monster: Monster;
+var action_seq: ActionSequence;
 
 function setup(): void
 {
@@ -10,14 +11,18 @@ function setup(): void
     frameRate(30);
     
     assets = new Assets();
+
+    action_seq = new ActionSequence();
     
     gameboard = new GameBoard(5, 3);
-    player = new Player(gameboard, 2, 1);
-    monster = new Monster(gameboard, 2, 0);
+    player = new Player(gameboard, new p5.Vector(2, 1));
+    monster = new Monster(gameboard, new p5.Vector(2, 0));
 }
 
 function draw(): void
 {
+    action_seq.update();
+    
     background(0);
     
     gameboard.draw();
@@ -25,34 +30,37 @@ function draw(): void
 
 function keyPressed(): void
 {
-    if (keyCode == LEFT_ARROW)
+    if (action_seq.isComplete())
     {
-        if (player.posX() > 0)
+        var offset: p5.Vector = undefined;
+
+        if (keyCode == LEFT_ARROW)
         {
-            player.moveToIfEmpty(player.posX() - 1, player.posY());
+            offset = new p5.Vector(-1, 0);
+        }
+        else if (keyCode == RIGHT_ARROW)
+        {
+            offset = new p5.Vector(1, 0);
+        }
+        else if (keyCode == UP_ARROW)
+        {
+            offset = new p5.Vector(0, -1);
+        }
+        else if (keyCode == DOWN_ARROW)
+        {
+            offset = new p5.Vector(0, 1);
+        }
+
+        if (offset)
+        {
+            var new_pos = player.pos().add(offset);
+
+            if (gameboard.isValidPosition(new_pos))
+            {
+                player.moveToIfEmpty(new_pos, action_seq);
+
+                monster.move(action_seq);
+            }
         }
     }
-    else if (keyCode == RIGHT_ARROW)
-    {
-        if (player.posX() < (gameboard.columns() - 1))
-        {
-            player.moveToIfEmpty(player.posX() + 1, player.posY());
-        }
-    }
-    else if (keyCode == UP_ARROW)
-    {
-        if (player.posY() > 0)
-        {
-            player.moveToIfEmpty(player.posX(), player.posY() - 1);
-        }
-    }
-    else if (keyCode == DOWN_ARROW)
-    {
-        if (player.posY() < (gameboard.rows() - 1))
-        {
-            player.moveToIfEmpty(player.posX(), player.posY() + 1);
-        }
-    }
-    
-    monster.move();
 }

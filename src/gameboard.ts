@@ -1,23 +1,44 @@
 class GameBoard
 {
-    private m_columns: number;
-    private m_rows: number;
-    private m_squares: Item[][];
+    private _columns: number;
+    private _rows: number;
+    private _squares: Item[][];
 
     constructor(columns: number, rows: number)
     {
-        this.m_columns = columns;
-        this.m_rows = rows;
+        this._columns = columns;
+        this._rows = rows;
         
-        this.m_squares = new Array(columns);
+        this._squares = new Array(columns);
         for (var i = 0; i < columns; i++)
         {
-            this.m_squares[i] = new Array(rows);
+            this._squares[i] = new Array(rows);
         }
     }
 
-    rows() : number { return this.m_rows; }
-    columns() : number { return this.m_columns; }
+    rows() : number { return this._rows; }
+    columns() : number { return this._columns; }
+
+    isValidPosition(pos: p5.Vector): boolean
+    {
+        // x and y must be integers in range 0..columns-1,0..rows-1
+        // z must be zero
+
+        if (pos.z != 0)
+            return false;
+        
+        if (pos.x != Math.floor(pos.x))
+            return false;
+        if (pos.y != Math.floor(pos.y))
+            return false;
+
+        if ((pos.x < 0) || (pos.x >= this._columns))
+            return false;
+        if ((pos.y < 0) || (pos.y >= this._rows))
+            return false;
+
+        return true;
+    }
 
     draw(): void
     {
@@ -25,43 +46,50 @@ class GameBoard
         var starty = 10;
         var endx = width - 10;
         var endy = height - 10;
-        var sizex = (endx - startx) / this.m_columns;
-        var sizey = (endy - starty) / this.m_rows;
+        var sizex = (endx - startx) / this._columns;
+        var sizey = (endy - starty) / this._rows;
+        var size = new p5.Vector(sizex, sizey);
 
-        for (var i = 0; i <= this.m_columns; ++i)
+        for (var i = 0; i <= this._columns; ++i)
         {
             var x = startx + i * sizex;
             line(x, starty, x, endy);
         }
 
-        for (i = 0; i <= this.m_rows; ++i)
+        for (i = 0; i <= this._rows; ++i)
         {
             var y = starty + i * sizey;
             line(startx, y, endx, y);
         }
         
-        for (x = 0; x < this.m_columns; ++x)
+        for (x = 0; x < this._columns; ++x)
         {
-            for (y = 0; y < this.m_rows; ++y)
+            for (y = 0; y < this._rows; ++y)
             {
-                if (this.m_squares[x][y])
+                var item = this._squares[x][y];
+
+                if (item)
                 {
-                    var posx = startx + x * sizex;
-                    var posy = starty + y * sizey;
+                    var board_pos = item.animationPos();
+
+                    var draw_pos = new p5.Vector(
+                        startx + board_pos.x * sizex,
+                        starty + board_pos.y * sizey
+                    );
                     
-                    this.m_squares[x][y].draw(posx, posy, sizex, sizey);
+                    this._squares[x][y].draw(draw_pos, size);
                 }
             }
         }
     };
 
-    setItem(x: number, y: number, item: Item): void
+    setItem(pos: p5.Vector, item: Item): void
     {
-        this.m_squares[x][y] = item;
+        this._squares[pos.x][pos.y] = item;
     };
 
-    isEmpty(x: number, y: number): boolean
+    isEmpty(pos: p5.Vector): boolean
     {
-        return !this.m_squares[x][y];
+        return !this._squares[pos.x][pos.y];
     }
 }

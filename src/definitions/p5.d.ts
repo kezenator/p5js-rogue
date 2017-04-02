@@ -2316,7 +2316,7 @@ declare namespace p5 {
     //
     //   required param "amt" follows an optional param
     //
-    // lerp(x: p5.Vector, y?: p5.Vector, z?: p5.Vector, amt: number): p5.Vector
+    lerp(dest: p5.Vector, amt: number): p5.Vector
     
     /**
      * Return a representation of this vector as a float array.

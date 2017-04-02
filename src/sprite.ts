@@ -9,7 +9,7 @@ class Sprite
         this.numFrames = numFrames;
     }
 
-    draw(x: number, y: number, sizex: number, sizey: number): void
+    draw(pos: p5.Vector, size: p5.Vector): void
     {
         var frameHeight = this.image.height / this.numFrames;
         
@@ -17,6 +17,6 @@ class Sprite
         
         var starty = frameIndex * frameHeight;
         
-        image(this.image, x, y, sizex, sizey, 0, starty, this.image.width, frameHeight);
+        image(this.image, pos.x, pos.y, size.x, size.y, 0, starty, this.image.width, frameHeight);
     }
 }

@@ -15,12 +15,15 @@
         "definitions/p5.d.ts",
         "definitions/p5.global-mode.d.ts",
         "definitions/p5.keycodes.d.ts",
+        "action.ts",
+        "actionsequence.ts",
         "assets.ts",
-        "sprite.ts",
-        "item.ts",
+        "delayaction.ts",
         "gameboard.ts",
-        "player.ts",
+        "item.ts",
         "monster.ts",
-        "sketch.ts"
+        "player.ts",
+        "sketch.ts",
+        "sprite.ts"
     ]
 }
