@@ -24,6 +24,8 @@
         "monster.ts",
         "player.ts",
         "sketch.ts",
-        "sprite.ts"
+        "sprite.ts",
+        "monsters/knight.ts",
+        "monsters/queen.ts"
     ]
 }

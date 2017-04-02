@@ -1,6 +1,6 @@
 var gameboard: GameBoard;
 var player: Player;
-var monster: Monster;
+var monsters: Monster[];
 var action_seq: ActionSequence;
 
 function setup(): void
@@ -14,15 +14,18 @@ function setup(): void
 
     action_seq = new ActionSequence();
     
-    gameboard = new GameBoard(5, 3);
-    player = new Player(gameboard, new p5.Vector(2, 1));
-    monster = new Monster(gameboard, new p5.Vector(2, 0));
+    gameboard = new GameBoard(7, 7);
+    player = new Player(gameboard, new p5.Vector(3, 3));
+    monsters = [
+        new Queen(gameboard, new p5.Vector(2, 0)),
+        new Knight(gameboard, new p5.Vector(6, 5))
+    ];
 }
 
 function draw(): void
 {
     action_seq.update();
-    
+
     background(0);
     
     gameboard.draw();
@@ -59,7 +62,12 @@ function keyPressed(): void
             {
                 player.moveToIfEmpty(new_pos, action_seq);
 
-                monster.move(action_seq);
+                var player_pos = player.pos();
+
+                for (var i = 0; i < monsters.length; ++i)
+                {
+                    monsters[i].move(player_pos, action_seq);
+                }
             }
         }
     }

@@ -1,36 +1,68 @@
 class Monster extends Item
 {
-    private sprite: Sprite;
-    private direction: p5.Vector;
+    private _sprite: Sprite;
+    private _direction: p5.Vector;
+    private _moves: p5.Vector[];
 
-    constructor(gameboard: GameBoard, pos: p5.Vector)
+    constructor(name: string, gameboard: GameBoard, pos: p5.Vector, moves: p5.Vector[])
     {
-        super("monster", gameboard, pos);
-        this.sprite = new Sprite(assets.monster, 4);
-        this.direction = new p5.Vector(0, 1);
+        super(name, gameboard, pos);
+        this._sprite = new Sprite(assets.monster, 4);
+        this._direction = new p5.Vector(0, 1);
+        this._moves = moves;
     }
 
     draw(pos: p5.Vector, size: p5.Vector): void
     {
-        this.sprite.draw(pos, size);
+        this._sprite.draw(pos, size);
     };
 
-    move(action_seq: ActionSequence): void
+    move(player_pos: p5.Vector, action_seq: ActionSequence): void
     {
-        for (var i = 0; i < 2; ++i)
-        {
-            var new_pos = this.pos().add(this.direction);
+        var gameboard = this.gameboard();
 
-            if (!this.gameboard().isValidPosition(new_pos)
-                || !this.gameboard().isEmpty(new_pos))
+        // Calculate all possible moves
+        // that the monster can make, and
+        // shortest distance (to the player) found
+
+        var all_moves: p5.Vector[] = [];
+        var shortest_distance = Infinity;
+
+        for (var i = 0; i < this._moves.length; ++i)
+        {
+            var dest = this.pos().add(this._moves[i]);
+
+            if (gameboard.isValidPosition(dest)
+                && gameboard.isEmpty(dest))
             {
-                this.direction = this.direction.mult(-1);
+                all_moves.push(dest);
+
+                var dist = dest.dist(player_pos);
+                if (dist < shortest_distance)
+                    shortest_distance = dist;
             }
-            else
+        }
+
+        // Now, collect all of the shortest moves
+
+        var shortest_moves: p5.Vector[] = [];
+
+        for (i = 0; i < all_moves.length; ++i)
+        {
+            if (all_moves[i].dist(player_pos) == shortest_distance)
             {
-                this.moveToIfEmpty(new_pos, action_seq);
-                break;
+                shortest_moves.push(all_moves[i]);
             }
+        }
+
+        // Now, randomly choose one of the moves
+        // that gets us closest to the player
+
+        if (shortest_moves.length > 0)
+        {
+            var random_index = Math.floor(Math.random() * shortest_moves.length)
+
+            this.moveTo(shortest_moves[random_index], action_seq);
         }
     }
 }
