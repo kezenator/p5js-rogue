@@ -9,15 +9,22 @@ The game is built using nodejs and gulp.
 The distribution web-site is then opened in a Browser - it's static content so it can be served by any HTTP server, or simply opened in a file.
 
 To install the tools (on CentOS 7):
+
     sudo yum install nodejs npm
     sudo npm install --global gulp
     npm install
 
+To install the tools (on the Raspberry Pi):
+
+    ??? - still working on this one... Raspberian Jesse contains a very old version of nodejs in apt-get
+
 To build and run:
+
     gulp
     firefox build/dist/index.html &
 
-To run the edit/compile/run cycle:
+There is also a edit/compile/run cycle. Currently you need to refresh the browser window after each change - I've not got Browsify working yet:
+
     gulp watch &
     firefox build/dist/index.html &
 
