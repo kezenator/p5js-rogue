@@ -4,10 +4,10 @@ class Monster extends Item
     private _direction: p5.Vector;
     private _moves: p5.Vector[];
 
-    constructor(name: string, gameboard: GameBoard, pos: p5.Vector, moves: p5.Vector[])
+    constructor(name: string, sprite: Sprite, gameboard: GameBoard, pos: p5.Vector, moves: p5.Vector[])
     {
         super(name, gameboard, pos);
-        this._sprite = new Sprite(assets.monster, 4);
+        this._sprite = sprite;
         this._direction = new p5.Vector(0, 1);
         this._moves = moves;
     }

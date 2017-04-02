@@ -1,15 +1,15 @@
 class Player extends Item
 {
-    private sprite: Sprite;
+    private _sprite: Sprite;
 
     constructor(gameboard: GameBoard, pos: p5.Vector)
     {
         super("player", gameboard, pos);
-        this.sprite = new Sprite(assets.player, 4);
+        this._sprite = assets.player;
     }
 
     draw(pos: p5.Vector, size: p5.Vector): void
     {
-        this.sprite.draw(pos, size);
+        this._sprite.draw(pos, size);
     }
 }

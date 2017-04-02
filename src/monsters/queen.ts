@@ -4,6 +4,7 @@ class Queen extends Monster
     {
         super(
             "queen",
+            assets.queen,
             gameboard,
             pos,
             [

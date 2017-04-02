@@ -1,12 +1,14 @@
 class Assets
 {
-    public player: p5.Image;
-    public monster: p5.Image;
+    public player: Sprite;
+    public monster: Sprite;
+    public queen: Sprite;
 
     constructor()
     {
-        this.player = loadImage("assets/player.png");
-        this.monster = loadImage("assets/monster.png");
+        this.player = new Sprite(loadImage("assets/player.png"), 4);
+        this.monster = new Sprite(loadImage("assets/monster.png"), 4);
+        this.queen = new Sprite(loadImage("assets/queen.png"), 1);
     }
 }
 

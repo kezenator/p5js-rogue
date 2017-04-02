@@ -4,6 +4,7 @@ class Knight extends Monster
     {
         super(
             "knight",
+            assets.monster,
             gameboard,
             pos,
             [
